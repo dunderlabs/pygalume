@@ -3,7 +3,7 @@ from controller import API
 from myexceptions import MusicNotFound, ArtistNotFound
 
 
-class GetLyricsExceptionTest(unittest.TestCase):
+class GetLyricsTest(unittest.TestCase):
 	def setUp(self):
 		self.api = API()
 
