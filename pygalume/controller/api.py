@@ -2,6 +2,9 @@ import requests as r
 from settings import API_URL
 from .utils import formating_string_name
 
+SONG_NOT_FOUND = 'song_notfound'
+NOT_FOUND = 'notfound'
+
 
 class API():
 
@@ -11,11 +14,11 @@ class API():
 
 		response = r.get(API_URL+'art={0}&mus={1}'.format(artist, music))
 		
-		if response.json()['type'] == 'song_notfound':
+		if response.json()['type'] == SONG_NOT_FOUND:
 			return 'Song not found!'
 			#raise MusicNotFound
 
-		elif response.json()['type'] == 'notfound':
+		elif response.json()['type'] == NOT_FOUND:
 			return 'Artist not found!'
 			#raise ArtistNotFound
 
