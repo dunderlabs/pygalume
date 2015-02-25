@@ -10,7 +10,7 @@ try:
 	data = api.getLyrics(artist, music)
 	print(data['text'])
 	print('\n ------------------------- \n')
-	print(data['translate'][0]['text'])
+	print(data['translate'])
 	
 except MusicNotFound:
 	print('Music not found!')
