@@ -8,7 +8,7 @@ class FormatingStringTest(unittest.TestCase):
 		self.string1 = 'Pearl Jam'
 		self.string2 = 'PearlJam'
 
-	def test_was_formated(self):
+	def test_if_was_formated(self):
 		string1_expected = 'pearl-jam'
 		result = formating_string_name(self.string1)
 		
@@ -17,7 +17,3 @@ class FormatingStringTest(unittest.TestCase):
 		string2_expected = 'pearljam'
 		result = formating_string_name(self.string2)
 		self.assertEqual(string2_expected, result)
-
-
-if __name__ == '__main__':
-	unittest.main()
