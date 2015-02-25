@@ -26,6 +26,8 @@ class GetLyricsTest(unittest.TestCase):
 		self._test_music('PearlJam', 'Last-Kiss')
 
 	def _test_music(self, artist, music):
-		text = self.api.getLyrics(artist, music)
-		self.assertIsInstance(text, str)
-		self.assertIsNotNone(text)
+		data = self.api.getLyrics(artist, music)
+		self.assertIsInstance(data, dict)
+		self.assertIsNotNone(data)
+		# 'text' is the key where the lyrics is.
+		self.assertIn('text', data.keys())

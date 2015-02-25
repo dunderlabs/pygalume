@@ -7,8 +7,10 @@ music = input("Music name:")
 api = API()
 
 try:
-	text = api.getLyrics(artist, music)
-	print(text)
+	data = api.getLyrics(artist, music)
+	print(data['text'])
+	print('\n ------------------------- \n')
+	print(data['translate'][0]['text'])
 	
 except MusicNotFound:
 	print('Music not found!')

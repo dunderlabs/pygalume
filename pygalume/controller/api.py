@@ -23,6 +23,4 @@ class API():
 			raise ArtistNotFound
 
 		else:
-			return response.json()['mus'][0]['text']
-
-
+			return response.json()['mus'][0]
