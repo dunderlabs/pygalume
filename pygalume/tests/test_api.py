@@ -23,7 +23,11 @@ class GetLyricsTest(unittest.TestCase):
 
 		self._test_music('Pearl-Jam', 'Last Kiss')
 
-		self._test_music('PearlJam', 'Last-Kiss')
+		self._test_music('Pearl Jam', 'Last-Kiss')
+
+		self._test_music('Pearl Jam', 'Last Kiss ')
+
+		self._test_music('Pearl Jam', ' Last Kiss')
 
 	def _test_music(self, artist, music):
 		data = self.api.getLyrics(artist, music)
