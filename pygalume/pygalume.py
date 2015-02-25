@@ -1,5 +1,5 @@
 from controller import API
-from controller.myexceptions import MusicNotFound, ArtistNotFound
+from myexceptions import MusicNotFound, ArtistNotFound
 
 artist = input("Artist name:")
 music = input("Music name:")

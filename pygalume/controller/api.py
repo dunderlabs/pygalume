@@ -1,7 +1,7 @@
 import requests as r
 from settings import API_URL
 from .utils import formating_string_name
-from .myexceptions import MusicNotFound, ArtistNotFound
+from myexceptions import MusicNotFound, ArtistNotFound
 
 
 SONG_NOT_FOUND = 'song_notfound'
