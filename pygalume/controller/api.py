@@ -14,8 +14,7 @@ class API():
 		artist = formating_string_name(artist)
 		music = formating_string_name(music)
 
-		response = r.get(API_URL+'art={0}&mus={1}'.format(artist, music))
-
+		response = r.get('{0}art={1}&mus={2}'.format(API_URL, artist, music))
 		response = response.json()
 		
 		if response['type'] == SONG_NOT_FOUND:
@@ -41,3 +40,20 @@ class API():
 				'translate': translate,
 			}
 			return data
+
+	def getDiscography(self, artist):
+		artist = formating_string_name(artist)
+		response = r.get('http://www.vagalume.com.br/{}/discografia/index.js'.format(artist))
+		
+		if not response:
+			raise ArtistNotFound
+
+		response = response.json()
+
+		albums_name = [disc['desc'] for disc in response['discography']['item']]
+		
+		data = {
+			'artist': response['discography']['artist']['desc'],
+			'albums': albums_name,
+		}
+		return data

@@ -35,3 +35,28 @@ class GetLyricsTest(unittest.TestCase):
 		self.assertIsNotNone(data)
 		# 'text' is the key where the lyrics is.
 		self.assertIn('text', data.keys())
+
+
+class GetDiscographyTest(unittest.TestCase):
+	def setUp(self):
+		self.api = API()
+
+	def test_artist_not_found(self):
+		with self.assertRaises(ArtistNotFound):
+			self.api.getDiscography('a')
+			self.api.getDiscography('PearlJam')
+
+	def test_artist_found(self):
+		self._test_artist('Pearl Jam')
+
+		self._test_artist('Pearl Jam ')
+
+		self._test_artist(' Pearl Jam')
+
+		self._test_artist('Pearl-Jam')
+
+	def _test_artist(self, artist):
+		data = self.api.getDiscography(artist)
+		self.assertIsInstance(data, dict)
+		self.assertIsNotNone(data)
+		self.assertIn('albums', data.keys())
