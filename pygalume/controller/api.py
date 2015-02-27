@@ -45,10 +45,11 @@ class API():
 		artist = formating_string_name(artist)
 		response = r.get('http://www.vagalume.com.br/{}/discografia/index.js'.format(artist))
 		
-		if not response:
-			raise ArtistNotFound
+		try:
+			response = response.json()
 
-		response = response.json()
+		except ValueError:
+			raise ArtistNotFound
 
 		albums_name = [disc['desc'] for disc in response['discography']['item']]
 		

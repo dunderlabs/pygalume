@@ -45,6 +45,7 @@ class GetDiscographyTest(unittest.TestCase):
 		with self.assertRaises(ArtistNotFound):
 			self.api.getDiscography('a')
 			self.api.getDiscography('PearlJam')
+			self.api.getDiscography('Pearl Ja')
 
 	def test_artist_found(self):
 		self._test_artist('Pearl Jam')
