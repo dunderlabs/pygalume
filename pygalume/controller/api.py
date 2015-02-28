@@ -33,9 +33,9 @@ class API():
 
 			data = {
 				'artist': response['art']['name'],
-				'artist-url': response['art']['url'],
+				'artist_url': response['art']['url'],
 				'music': response['mus'][0]['name'],
-				'music-url': response['mus'][0]['url'], 
+				'music_url': response['mus'][0]['url'], 
 				'text': response['mus'][0]['text'],
 				'translate': translate,
 			}
