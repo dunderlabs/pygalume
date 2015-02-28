@@ -1,8 +1,7 @@
-from controller import API
+from controller import Factory
 from myexceptions import MusicNotFound, ArtistNotFound
 
-
-api = API()
+factory = Factory()
 
 op = int(input(
 	'''
@@ -17,7 +16,7 @@ if op == 1:
 	music = input("Music name:")
 
 	try:
-		data = api.getLyrics(artist, music)
+		data = factory.getLyrics(artist, music)
 		print(data['text'])
 		print('\n ------------------------- \n')
 		print(data['translate'])
@@ -32,7 +31,7 @@ elif op == 2:
 	artist = input("Artist name:")
 	
 	try:
-		data = api.getDiscography(artist)
+		data = factory.getDiscography(artist)
 		for disc in data['albums']:
 			print(disc)
 
