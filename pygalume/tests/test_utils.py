@@ -13,19 +13,15 @@ class FormatingStringTest(unittest.TestCase):
 	def test_if_was_formated(self):
 		expected = 'pearl-jam'
 		result = formating_string_name(self.string1)
-		
 		self.assertEqual(expected, result)
 		
 		expected = 'pearljam'
 		result = formating_string_name(self.string2)
-
 		self.assertEqual(expected, result)
 
 		expected = 'pearl-jam'
 		result = formating_string_name(self.string3)
-		
 		self.assertEqual(expected, result)
 
 		result = formating_string_name(self.string4)
-		
 		self.assertEqual(expected, result)

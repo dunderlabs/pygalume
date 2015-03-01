@@ -10,4 +10,5 @@ class TestLyricsModel(TestBaseDb):
 
 		expected = [lyrics]
 		result = self.session.query(Lyrics).all()
+		
 		self.assertEqual(result, expected)

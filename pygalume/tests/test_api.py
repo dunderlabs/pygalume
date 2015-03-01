@@ -31,8 +31,10 @@ class GetLyricsTest(unittest.TestCase):
 
 	def _test_music(self, artist, music):
 		data = self.api.getLyrics(artist, music)
+		
 		self.assertIsInstance(data, dict)
 		self.assertIsNotNone(data)
+
 		# 'text' is the key where the lyrics is.
 		self.assertIn('text', data.keys())
 
@@ -58,6 +60,7 @@ class GetDiscographyTest(unittest.TestCase):
 
 	def _test_artist(self, artist):
 		data = self.api.getDiscography(artist)
+		
 		self.assertIsInstance(data, dict)
 		self.assertIsNotNone(data)
 		self.assertIn('albums', data.keys())

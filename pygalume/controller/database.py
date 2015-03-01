@@ -1,4 +1,4 @@
-from sqlalchemy import and_, exists
+from sqlalchemy import and_
 
 from myexceptions import MusicNotFound, ArtistNotFound
 from models import Lyrics, session as s
@@ -18,7 +18,8 @@ class DataBase():
 		music_tag = formating_string_name(music)
 		
 		lyrics = self.session.query(Lyrics).\
-				filter(and_(Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag)).first()
+				filter(and_(Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag)).\
+				first()
 
 		return lyrics.__dict__
 
@@ -26,8 +27,8 @@ class DataBase():
 		artist_tag = formating_string_name(artist)
 		music_tag = formating_string_name(music)
 
-		music = self.session.query(Lyrics).filter(and_(Lyrics.music_tag == music_tag)).first()
-		artist = self.session.query(Lyrics).filter(and_(Lyrics.artist_tag == artist_tag)).first()
+		music = self.session.query(Lyrics).filter(Lyrics.music_tag == music_tag).first()
+		artist = self.session.query(Lyrics).filter(Lyrics.artist_tag == artist_tag).first()
 
 		if artist and music:
 			return True
