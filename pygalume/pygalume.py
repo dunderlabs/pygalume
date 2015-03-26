@@ -17,9 +17,9 @@ if op == 1:
 
 	try:
 		data = factory.getLyrics(artist, music)
-		print(data['text'])
+		print(data.text)
 		print('\n ------------------------- \n')
-		print(data['translate'])
+		print(data.translate)
 		
 	except MusicNotFound:
 		print('Music not found!')

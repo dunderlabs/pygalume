@@ -21,7 +21,7 @@ class DataBase():
 				filter(and_(Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag)).\
 				first()
 
-		return lyrics.__dict__
+		return lyrics
 
 	def searchLyrics(self, artist, music):
 		artist_tag = formating_string_name(artist)

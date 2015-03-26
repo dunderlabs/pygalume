@@ -13,14 +13,14 @@ class TestFactory(TestBaseDb):
 
 		db_lyrics = fac.getLyrics(artist='Testudo', music='Test')
 
-		self.assertIsInstance(db_lyrics, dict)
+		self.assertIsInstance(db_lyrics, Lyrics)
 
 	def test_get_lyrics_without_db(self):
 		fac = Factory()
 
 		db_lyrics = fac.getLyrics(artist='Pearl Jam', music='Last Kiss')
 
-		self.assertIsInstance(db_lyrics, dict)
+		self.assertIsInstance(db_lyrics, Lyrics)
 
 	def test_get_lyrics_without_db_error(self):
 		fac = Factory()

@@ -10,7 +10,7 @@ class TestDataBase(TestBaseDb):
 
 		lyrics = self.db.getLyrics(artist='Testudo', music='Test')
 
-		self.assertIsInstance(lyrics, dict)
+		self.assertIsInstance(lyrics, Lyrics)
 
 	def test_search_lyrics(self):
 		self._create()
