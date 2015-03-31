@@ -12,17 +12,17 @@ class TestDataBase(TestBaseDb):
 
 		self.assertIsInstance(lyrics, Lyrics)
 
-	def test_search_lyrics(self):
+	def test_if_exist_lyrics(self):
 		self._create()
 
-		answer = self.db.searchLyrics(artist='Testudo', music='Test')
+		answer = self.db.testIfExist(artist='Testudo', music='Test')
 
 		self.assertTrue(answer)
 
 	def test_add_lyrics(self):
 		data = self._create(commit=False)
-
-		self.db.addLyrics(data)
+		lyrics = Lyrics(**data)
+		self.db.addLyrics(lyrics)
 
 		result = self.session.query(Lyrics).all()
 		self.assertEqual(len(result), 1)

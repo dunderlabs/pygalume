@@ -16,7 +16,7 @@ class Factory():
 	def getLyrics(self, artist, music):
 
 		try:
-			if self._db.searchLyrics(artist, music):
+			if self._db.testIfExist(artist, music):
 				lyrics = self._db.getLyrics(artist, music)
 
 			else:

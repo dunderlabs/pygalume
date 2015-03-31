@@ -23,7 +23,7 @@ class DataBase():
 
 		return lyrics
 
-	def searchLyrics(self, artist, music):
+	def testIfExist(self, artist, music):
 		artist_tag = formating_string_name(artist)
 		music_tag = formating_string_name(music)
 
@@ -35,8 +35,7 @@ class DataBase():
 		else:
 			return False
 
-	def addLyrics(self, data):
-		lyrics = Lyrics(**data)
+	def addLyrics(self, lyrics):
 		lyrics.music_tag = formating_string_name(lyrics.music)
 		lyrics.artist_tag = formating_string_name(lyrics.artist)
 		

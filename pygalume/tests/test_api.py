@@ -1,4 +1,6 @@
 import unittest
+
+from models import Lyrics
 from controller import API
 from myexceptions import MusicNotFound, ArtistNotFound
 
@@ -30,13 +32,12 @@ class GetLyricsTest(unittest.TestCase):
 		self._test_music('Pearl Jam', ' Last Kiss')
 
 	def _test_music(self, artist, music):
-		data = self.api.getLyrics(artist, music)
+		lyrics = self.api.getLyrics(artist, music)
 		
-		self.assertIsInstance(data, dict)
-		self.assertIsNotNone(data)
+		self.assertIsInstance(lyrics, Lyrics)
 
-		# 'text' is the key where the lyrics is.
-		self.assertIn('text', data.keys())
+		self.assertEqual(lyrics.music, 'Last Kiss')
+		self.assertEqual(lyrics.artist, 'Pearl Jam')
 
 
 class GetDiscographyTest(unittest.TestCase):

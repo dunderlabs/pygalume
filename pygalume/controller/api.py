@@ -1,7 +1,9 @@
 import requests as r
 from settings import API_URL
-from .utils import formating_string_name
+from models import Lyrics
 from myexceptions import MusicNotFound, ArtistNotFound
+
+from .utils import formating_string_name
 
 
 SONG_NOT_FOUND = 'song_notfound'
@@ -35,11 +37,11 @@ class API():
 				'artist': response['art']['name'],
 				'artist_url': response['art']['url'],
 				'music': response['mus'][0]['name'],
-				'music_url': response['mus'][0]['url'], 
+				'music_url': response['mus'][0]['url'],
 				'text': response['mus'][0]['text'],
 				'translate': translate,
 			}
-			return data
+			return Lyrics(**data)
 
 	def getDiscography(self, artist):
 		artist = formating_string_name(artist)
