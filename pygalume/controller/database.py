@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from sqlalchemy import and_
 
 from myexceptions import MusicNotFound, ArtistNotFound
@@ -40,4 +42,18 @@ class DataBase():
 		lyrics.artist_tag = formating_string_name(lyrics.artist)
 		
 		self.session.add(lyrics)
+		self.session.commit()
+
+	def testIfExpired(self, lyrics):
+		lyrics_date = lyrics.created_date
+		now = datetime.now().date()
+		
+		date_to_expires = lyrics_date + timedelta(days=30)
+
+		return date_to_expires < now
+
+	def updateLyrics(self, lyrics, new_lyrics):
+		lyrics.update(new_lyrics)
+
+		#self.session.add(lyrics)
 		self.session.commit()

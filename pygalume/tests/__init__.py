@@ -1,4 +1,6 @@
+from datetime import datetime
 from unittest import TestCase
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -33,15 +35,15 @@ class TestBaseDb(TestCase):
 			'translate': 'Testando',
 			'artist_tag': 'testudo',
 			'music_tag': 'test',
+			'created_date': datetime.now().date(),
 		}
 		data.update(kwargs)
 
+		lyrics = Lyrics(**data)
+		
 		if commit:
-			lyrics = Lyrics(**data)
-
 			self.session.add(lyrics)
 			self.session.commit()
 
-			return lyrics
-		else: 
-			return data
+		return lyrics
+	

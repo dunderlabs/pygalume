@@ -19,6 +19,10 @@ class Factory():
 			if self._db.testIfExist(artist, music):
 				lyrics = self._db.getLyrics(artist, music)
 
+				if self._db.testIfExpired(lyrics):
+					new_lyrics = self._api.getLyrics(artist, music)
+					self._db.updateLyrics(lyrics, new_lyrics)
+
 			else:
 				lyrics = self._api.getLyrics(artist, music)
 				self._db.addLyrics(lyrics)
