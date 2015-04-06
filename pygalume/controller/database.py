@@ -8,52 +8,52 @@ from .utils import formating_string_name
 
 
 class DataBase():
-	'''
-		This class will work as a cache.
-	'''
+    '''
+        This class will work as a cache.
+    '''
 
-	def __init__(self, session=s):
-		self.session = session
+    def __init__(self, session=s):
+        self.session = session
 
-	def getLyrics(self, artist, music):
-		artist_tag = formating_string_name(artist)
-		music_tag = formating_string_name(music)
-		
-		lyrics = self.session.query(Lyrics).\
-				filter(and_(Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag)).\
-				first()
+    def getLyrics(self, artist, music):
+        artist_tag = formating_string_name(artist)
+        music_tag = formating_string_name(music)
 
-		return lyrics
+        lyrics = self.session.query(Lyrics).\
+                filter(and_(Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag)).\
+                first()
 
-	def testIfExist(self, artist, music):
-		artist_tag = formating_string_name(artist)
-		music_tag = formating_string_name(music)
+        return lyrics
 
-		music = self.session.query(Lyrics).filter(Lyrics.music_tag == music_tag).first()
-		artist = self.session.query(Lyrics).filter(Lyrics.artist_tag == artist_tag).first()
+    def testIfExist(self, artist, music):
+        artist_tag = formating_string_name(artist)
+        music_tag = formating_string_name(music)
 
-		if artist and music:
-			return True
-		else:
-			return False
+        music = self.session.query(Lyrics).filter(Lyrics.music_tag == music_tag).first()
+        artist = self.session.query(Lyrics).filter(Lyrics.artist_tag == artist_tag).first()
 
-	def addLyrics(self, lyrics):
-		lyrics.music_tag = formating_string_name(lyrics.music)
-		lyrics.artist_tag = formating_string_name(lyrics.artist)
-		
-		self.session.add(lyrics)
-		self.session.commit()
+        if artist and music:
+            return True
+        else:
+            return False
 
-	def testIfExpired(self, lyrics):
-		lyrics_date = lyrics.created_date
-		now = datetime.now().date()
-		
-		date_to_expires = lyrics_date + timedelta(days=30)
+    def addLyrics(self, lyrics):
+        lyrics.music_tag = formating_string_name(lyrics.music)
+        lyrics.artist_tag = formating_string_name(lyrics.artist)
 
-		return date_to_expires < now
+        self.session.add(lyrics)
+        self.session.commit()
 
-	def updateLyrics(self, lyrics, new_lyrics):
-		lyrics.update(new_lyrics)
+    def testIfExpired(self, lyrics):
+        lyrics_date = lyrics.created_date
+        now = datetime.now().date()
 
-		#self.session.add(lyrics)
-		self.session.commit()
+        date_to_expires = lyrics_date + timedelta(days=30)
+
+        return date_to_expires < now
+
+    def updateLyrics(self, lyrics, new_lyrics):
+        lyrics.update(new_lyrics)
+
+        # self.session.add(lyrics)
+        self.session.commit()

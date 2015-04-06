@@ -1,6 +1,10 @@
-
 class MusicNotFound(Exception):
-	pass
+    pass
+
 
 class ArtistNotFound(Exception):
-	pass
+    pass
+
+
+class DiscographyNotFound(Exception):
+    pass
