@@ -31,3 +31,6 @@ class Lyrics(Base):
         self.text = new_lyrics.text
         self.translate = new_lyrics.translate
         self.created_date = datetime.now().date()
+
+    def __repr__(self):
+        return '{0} - {1}'.format(self.artist, self.music)

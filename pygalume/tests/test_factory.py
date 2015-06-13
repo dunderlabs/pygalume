@@ -14,6 +14,7 @@ class TestFactory(TestBaseDb):
 		db_lyrics = fac.getLyrics(artist='Testudo', music='Test')
 
 		self.assertIsInstance(db_lyrics, Lyrics)
+		self.assertEqual(str(db_lyrics), 'Testudo - Test')
 
 	def test_get_lyrics_without_db(self):
 		fac = Factory()
@@ -21,6 +22,7 @@ class TestFactory(TestBaseDb):
 		db_lyrics = fac.getLyrics(artist='Pearl Jam', music='Last Kiss')
 
 		self.assertIsInstance(db_lyrics, Lyrics)
+		self.assertEqual(str(db_lyrics), 'Pearl Jam - Last Kiss')
 
 	def test_get_lyrics_without_db_error(self):
 		fac = Factory()
