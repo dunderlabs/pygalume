@@ -51,3 +51,13 @@ class TestFactory(TestBaseDb):
 		
 		with self.assertRaises(ArtistNotFound):
 			db_lyrics = fac.getLyrics(artist='Pear Jam', music='Last')
+
+	def test_get_cached_songs(self):
+		''' When lyrics exists in DB'''
+		lyrics = self._create()
+		fac = Factory(self.session)
+
+		db_lyrics = fac.getCachedSongs()
+
+		self.assertEqual(len(db_lyrics), 1)
+

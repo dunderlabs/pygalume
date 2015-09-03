@@ -47,3 +47,10 @@ class Factory():
 
         except:
             raise
+
+    def getCachedSongs(self):
+
+        try:
+            return self._db.getCachedSongs()
+        except:
+            raise

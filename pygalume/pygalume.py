@@ -23,7 +23,7 @@ def main():
                   help="List all albums")
 
     parser.add_option("--lc", action="store_true", dest="listCache",
-                  help="List all music in cache")
+                  help="List all songs in cache")
 
     parser.add_option("--cc", action="store_true", dest="cache",
                   help="Clear the database cache")
@@ -60,7 +60,7 @@ def main():
         return
 
     if listCache:
-        print("This is not working yet!")
+        getCachedMusics()
         return
 
     if artist and music:
@@ -88,7 +88,7 @@ Options:
   --al, --album <keyword>   set album name
   -d, --discography         search for artist name
   
-  --lc, --list-cache        list all music in cache
+  --lc, --list-cache        list all songs in cache
   --cc, --clear-cache       clear cache from database
 
   --update                  upgrade to latest version
@@ -98,6 +98,16 @@ Options:
 def clearCache():
     os.remove('banco.db')
     print("Cache cleaned!")
+
+
+def getCachedMusics():
+    songs = factory.getCachedSongs()
+
+    print('\n\n  Artist  -  Song')
+    print('-------------------')
+    for song in songs:
+        print(song)
+    print('\n\n')
 
 
 def basicInfo():
