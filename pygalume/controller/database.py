@@ -51,5 +51,10 @@ class DataBase():
     def updateLyrics(self, lyrics, new_lyrics):
         lyrics.update(new_lyrics)
 
-        # self.session.add(lyrics)
         self.session.commit()
+
+    def getCachedSongs(self):
+        lyrics = self.session.query(Lyrics).all()
+        return lyrics
+                
+

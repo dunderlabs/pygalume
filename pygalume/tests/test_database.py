@@ -54,3 +54,11 @@ class TestDataBase(TestBaseDb):
 
 		self.assertEqual(db_lyrics.text, 'Bar')
 
+	def test_cached_songs(self):
+		lyrics = self._create()
+		lyrics = self._create(artist="test2", music="music2")
+
+		db_lyrics = self.db.getCachedSongs()
+
+		self.assertEqual(len(db_lyrics), 2)
+

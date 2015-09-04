@@ -66,18 +66,10 @@ class API():
         songs = []
         artist = formating_string_name(artist)
 
-        # # Get albums from the artist
-        # try:
-        #     data_albums = self.getDiscography(artist)
-        # except:
-        #     raise
-
-        # print(data_albums)
-        # if album not in data_albums['albums']:
-
         response = r.get(
             'http://www.vagalume.com.br/{}/discografia/index.js'.format(artist)
         )
+        
         try:
             response = response.json()
         except ValueError:
