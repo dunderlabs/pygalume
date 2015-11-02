@@ -5,21 +5,21 @@ from tests import TestBaseDb
 
 class TestLyricsModel(TestBaseDb):
 
-	def test_if_created(self):
-		lyrics = self._create()
+    def test_if_created(self):
+        lyrics = self._create()
 
-		expected = [lyrics]
-		result = self.session.query(Lyrics).all()
-		
-		self.assertEqual(result, expected)
+        expected = [lyrics]
+        result = self.session.query(Lyrics).all()
 
-	def test_update(self):
-		lyrics = self._create()
+        self.assertEqual(result, expected)
 
-		another_lyrics = self._create(commit=False, text='Bar')
+    def test_update(self):
+        lyrics = self._create()
 
-		lyrics.update(another_lyrics)
+        another_lyrics = self._create(commit=False, text='Bar')
 
-		db_lyrics = self.db.getLyrics(artist='Testudo', music='Test')
+        lyrics.update(another_lyrics)
 
-		self.assertEqual(db_lyrics.text, 'Bar')
+        db_lyrics = self.db.getLyrics(artist='Testudo', music='Test')
+
+        self.assertEqual(db_lyrics.text, 'Bar')

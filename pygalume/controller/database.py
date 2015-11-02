@@ -19,9 +19,10 @@ class DataBase():
         artist_tag = formating_string_name(artist)
         music_tag = formating_string_name(music)
 
-        lyrics = self.session.query(Lyrics).\
-                filter(and_(Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag)).\
-                first()
+        lyrics = self.session.query(Lyrics).filter(
+            and_(
+                Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag
+            )).first()
 
         return lyrics
 
@@ -56,5 +57,3 @@ class DataBase():
     def getCachedSongs(self):
         lyrics = self.session.query(Lyrics).all()
         return lyrics
-                
-

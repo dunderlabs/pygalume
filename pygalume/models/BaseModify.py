@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer
-from sqlalchemy.ext.declarative import declarative_base,declared_attr
+from sqlalchemy.ext.declarative import declarative_base, declared_attr
 
 
 class BaseModify(object):
     """
-    All the classes that inherit of Base, are created by default with an ID, and
-    doesn't need set up __tablename__ attribute.
+    All the classes that inherit of Base, are created by default with an ID,
+    and doesn't need set up __tablename__ attribute.
     """
     @declared_attr
     def id(cls):
