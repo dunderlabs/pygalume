@@ -10,31 +10,66 @@ factory = Factory()
 def main():
     parser = optparse.OptionParser(add_help_option=False)
 
-    parser.add_option("-a", "--artist", dest="artist", type="string",
-                                        help="Set artist name",)
+    parser.add_option(
+        "-a",
+        "--artist",
+        dest="artist",
+        type="string",
+        help="Set artist name",
+    )
 
-    parser.add_option("-m", "--music", dest="music", type="string",
-                                        help="Set music name",)
+    parser.add_option(
+        "-m",
+        "--music",
+        dest="music",
+        type="string",
+        help="Set music name",
+    )
 
-    parser.add_option("--al", "--album", dest="album", type="string",
-                                        help="Set album name",)
+    parser.add_option(
+        "--al",
+        "--album",
+        dest="album",
+        type="string",
+        help="Set album name",
+    )
 
-    parser.add_option("-d", action="store_true", dest="discography",
-                  help="List all albums")
+    parser.add_option(
+        "-d",
+        action="store_true",
+        dest="discography",
+        help="List all albums",
+    )
 
-    parser.add_option("--lc", action="store_true", dest="listCache",
-                  help="List all songs in cache")
+    parser.add_option(
+        "--lc",
+        action="store_true",
+        dest="listCache",
+        help="List all songs in cache",
+    )
 
-    parser.add_option("--cc", action="store_true", dest="cache",
-                  help="Clear the database cache")
+    parser.add_option(
+        "--cc",
+        action="store_true",
+        dest="cache",
+        help="Clear the database cache",
+    )
 
-    parser.add_option("--update",
-                  action="store_true", dest="update",
-                  help="upgrade to latest version")
+    parser.add_option(
+        "--update",
+        action="store_true",
+        dest="update",
+        help="upgrade to latest version",
+    )
 
-    parser.add_option("-h", "--help",
-                      action="store_true", dest="help", help="-h")
-    
+    parser.add_option(
+        "-h",
+        "--help",
+        action="store_true",
+        dest="help",
+        help="-h",
+    )
+
     (options, args) = parser.parse_args()
 
     argsParameters = {}
@@ -46,15 +81,15 @@ def main():
     cache = options.cache
     help = options.help
     update = options.update
-    
+
     if help:
-       printHelpMessage()
-       return
+        printHelpMessage()
+        return
 
     if update:
         print("This is not working yet!")
         return
-    
+
     if cache:
         clearCache()
         return
@@ -79,7 +114,7 @@ def main():
 
 
 def printHelpMessage():
-     print("""
+    print("""
 Options:
   -h, --help                show this help message and exit
 
@@ -87,7 +122,7 @@ Options:
   -m, --music <keyword>     set music name
   --al, --album <keyword>   set album name
   -d, --discography         search for artist name
-  
+
   --lc, --list-cache        list all songs in cache
   --cc, --clear-cache       clear cache from database
 
@@ -111,7 +146,7 @@ def getCachedMusics():
 
 
 def basicInfo():
-     print("""
+    print("""
             Pygalume - Lyrics Finder
 
               Usage: pygalume.py [-a/--artist <artist-name>]

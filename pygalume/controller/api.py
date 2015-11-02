@@ -46,7 +46,9 @@ class API():
 
     def getDiscography(self, artist):
         artist = formating_string_name(artist)
-        response = r.get('http://www.vagalume.com.br/{}/discografia/index.js'.format(artist))
+        response = r.get(
+            'http://www.vagalume.com.br/{}/discografia/index.js'.format(artist)
+        )
 
         try:
             response = response.json()
@@ -54,7 +56,9 @@ class API():
         except ValueError:
             raise ArtistNotFound
 
-        albums_name = [disc['desc'] for disc in response['discography']['item']]
+        albums_name = [
+            disc['desc'] for disc in response['discography']['item']
+        ]
 
         data = {
             'artist': response['discography']['artist']['desc'],
@@ -69,7 +73,7 @@ class API():
         response = r.get(
             'http://www.vagalume.com.br/{}/discografia/index.js'.format(artist)
         )
-        
+
         try:
             response = response.json()
         except ValueError:
