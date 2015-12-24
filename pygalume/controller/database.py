@@ -2,15 +2,15 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import and_
 
-from myexceptions import MusicNotFound, ArtistNotFound
+# from myexceptions import MusicNotFound, ArtistNotFound
 from models import Lyrics, session as s
 from .utils import formating_string_name
 
 
 class DataBase():
-    '''
+    """
         This class will work as a cache.
-    '''
+    """
 
     def __init__(self, session=s):
         self.session = session

@@ -1,4 +1,4 @@
-import optparse
+import argparse
 import os
 from controller import Factory
 from myexceptions import MusicNotFound, ArtistNotFound
@@ -8,83 +8,94 @@ factory = Factory()
 
 
 def main():
-    parser = optparse.OptionParser(add_help_option=False)
+    parser = argparse.ArgumentParser(
+        prog='Pygalume',
+        description="""A simple python command line utility using the Vagalume
+                    API to search and show songs lyrics.""",
+        usage="""
+        Pygalume - Lyrics Finder
 
-    parser.add_option(
+          Usage: pygalume.py [-a/--artist <artist-name>]
+                             [-m/--music <music-name>]
+                             [--al/--album <album-name>]
+                             [-d/--discography]
+                             [--lc/--list-cache]
+                             [--cc/--clear-cache]
+  \n              Get basic options and Help, use: -h\--help
+
+          Examples:
+            - Get Lyrics:
+                 pygalume.py -a "Pearl Jam" -m Black
+
+            - Get Discography:
+                 pygalume.py -a "Pearl Jam" -d
+
+            - Get Songs name from an album:
+                 pygalume.py -a "Pearl Jam" --al "Ten"
+              """
+    )
+
+    parser.add_argument(
         "-a",
         "--artist",
         dest="artist",
-        type="string",
+        type=str,
         help="Set artist name",
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-m",
         "--music",
         dest="music",
-        type="string",
+        type=str,
         help="Set music name",
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--al",
         "--album",
         dest="album",
-        type="string",
+        type=str,
         help="Set album name",
     )
 
-    parser.add_option(
+    parser.add_argument(
         "-d",
         action="store_true",
         dest="discography",
         help="List all albums",
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--lc",
         action="store_true",
         dest="listCache",
         help="List all songs in cache",
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--cc",
         action="store_true",
         dest="cache",
         help="Clear the database cache",
     )
 
-    parser.add_option(
+    parser.add_argument(
         "--update",
         action="store_true",
         dest="update",
         help="upgrade to latest version",
     )
 
-    parser.add_option(
-        "-h",
-        "--help",
-        action="store_true",
-        dest="help",
-        help="-h",
-    )
+    options = parser.parse_args()
 
-    (options, args) = parser.parse_args()
-
-    argsParameters = {}
     artist = options.artist
     music = options.music
     album = options.album
     discography = options.discography
     listCache = options.listCache
     cache = options.cache
-    help = options.help
     update = options.update
-
-    if help:
-        printHelpMessage()
-        return
 
     if update:
         print("This is not working yet!")
@@ -109,7 +120,7 @@ def main():
         getSongs(artist, album)
 
     else:
-        basicInfo()
+        printHelpMessage()
         return
 
 
@@ -143,30 +154,6 @@ def getCachedMusics():
     for song in songs:
         print(song)
     print('\n\n')
-
-
-def basicInfo():
-    print("""
-            Pygalume - Lyrics Finder
-
-              Usage: pygalume.py [-a/--artist <artist-name>]
-                                 [-m/--music <music-name>]
-                                 [--al/--album <album-name>]
-                                 [-d/--discography]
-                                 [--lc/--list-cache]
-                                 [--cc/--clear-cache]
-      \n              Get basic options and Help, use: -h\--help
-
-              Examples:
-                - Get Lyrics:
-                     pygalume.py -a "Pearl Jam" -m Black
-
-                - Get Discography:
-                     pygalume.py -a "Pearl Jam" -d
-
-                - Get Songs name from an album:
-                     pygalume.py -a "Pearl Jam" --al "Ten"
-              """)
 
 
 def getLyrics(artist, music):
