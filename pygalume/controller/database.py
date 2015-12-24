@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import and_
 
-# from myexceptions import MusicNotFound, ArtistNotFound
 from models import Lyrics, session as s
 from .utils import formating_string_name
 
