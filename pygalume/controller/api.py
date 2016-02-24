@@ -1,7 +1,7 @@
 import requests as r
-from settings import API_URL
-from models import Lyrics
-from myexceptions import MusicNotFound, ArtistNotFound, DiscographyNotFound
+from ..settings import API_URL
+from ..models import Lyrics
+from ..myexceptions import MusicNotFound, ArtistNotFound, DiscographyNotFound
 
 from .utils import formating_string_name
 

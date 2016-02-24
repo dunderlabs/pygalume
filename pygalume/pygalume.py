@@ -1,7 +1,7 @@
 import argparse
 import os
-from controller import Factory
-from myexceptions import MusicNotFound, ArtistNotFound
+from .controller.factory import Factory
+from .myexceptions import MusicNotFound, ArtistNotFound
 
 
 factory = Factory()

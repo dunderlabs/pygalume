@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import and_
 
-from models import Lyrics, session as s
+from ..models import Lyrics, session as s
 from .utils import formating_string_name
 
 
