@@ -26,10 +26,10 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    keywords='pygalume cli lyrics shell',
+    keywords='pygalume cli lyrics shell vagalume music song',
     download_url='https://pypi.python.org/pypi/Pygalume',
     packages=find_packages(exclude=['tests*']),
-    install_requires=['requests>=2.7.0', 'SQLAlchemy>=1.0.8'],
+    install_requires=['requests>=2.7.0', 'peewee>=2.8.0'],
     scripts=['bin/pygalume'],
     platforms='windows linux',
 )

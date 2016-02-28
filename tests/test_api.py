@@ -1,8 +1,10 @@
 import unittest
 
-from models import Lyrics
-from controller import API
-from myexceptions import MusicNotFound, ArtistNotFound, DiscographyNotFound
+from pygalume.models import Lyrics
+from pygalume.controller import API
+from pygalume.myexceptions import (
+    MusicNotFound, ArtistNotFound, DiscographyNotFound
+)
 
 
 class GetLyricsTest(unittest.TestCase):

@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from models import Lyrics
-from controller import Factory
-from myexceptions import MusicNotFound, ArtistNotFound
-from tests import TestBaseDb
+from pygalume.models import Lyrics
+from pygalume.controller import Factory
+from pygalume.myexceptions import ArtistNotFound
+from . import TestBaseDb
 
 
 class TestFactory(TestBaseDb):
@@ -12,7 +12,7 @@ class TestFactory(TestBaseDb):
         ''' When lyrics exists in DB'''
         lyrics = self._create()
 
-        fac = Factory(self.session)
+        fac = Factory()
 
         db_lyrics = fac.getLyrics(artist='Testudo', music='Test')
 
@@ -21,7 +21,7 @@ class TestFactory(TestBaseDb):
 
     def test_get_lyrics_without_db(self):
         ''' When lyrics does not exist in DB '''
-        fac = Factory(self.session)
+        fac = Factory()
 
         db_lyrics = fac.getLyrics(artist='Pearl Jam', music='Last Kiss')
 
@@ -30,12 +30,13 @@ class TestFactory(TestBaseDb):
 
     def test_get_expired_lyrics(self):
         ''' When lyrics exists and is expired '''
-        fac = Factory(self.session)
+        fac = Factory()
         old_lyrics = fac.getLyrics(artist='Pearl Jam', music='Last Kiss')
 
         new_date = datetime.strptime('2014-04-04', '%Y-%m-%d')
         old_lyrics.created_date = new_date
-        self.session.commit()
+
+        old_lyrics.save()
 
         new_lyrics = fac.getLyrics(artist='Pearl Jam', music='Last Kiss')
 
@@ -54,7 +55,7 @@ class TestFactory(TestBaseDb):
     def test_get_cached_songs(self):
         ''' When lyrics exists in DB'''
         lyrics = self._create()
-        fac = Factory(self.session)
+        fac = Factory()
 
         db_lyrics = fac.getCachedSongs()
 

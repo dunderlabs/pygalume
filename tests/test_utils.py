@@ -1,5 +1,6 @@
 import unittest
-from controller.utils import formating_string_name
+
+from pygalume.controller.utils import formating_string_name
 
 
 class FormatingStringTest(unittest.TestCase):
