@@ -4,14 +4,8 @@ from .api import API
 
 class Factory():
 
-    def __init__(self, session=None):
-        self.session = session
-
-        if self.session:
-            self._db = DataBase(self.session)
-        else:
-            self._db = DataBase()
-
+    def __init__(self):
+        self._db = DataBase()
         self._api = API()
 
     def getLyrics(self, artist, music):

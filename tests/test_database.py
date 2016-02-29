@@ -1,8 +1,7 @@
 from datetime import datetime
 
-from models import Lyrics
-
-from tests import TestBaseDb
+from pygalume.models import Lyrics
+from . import TestBaseDb
 
 
 class TestDataBase(TestBaseDb):
@@ -25,11 +24,11 @@ class TestDataBase(TestBaseDb):
         lyrics = self._create(commit=False)
         self.db.addLyrics(lyrics)
 
-        result = self.session.query(Lyrics).all()
+        result = Lyrics.select()
         self.assertEqual(len(result), 1)
 
     def test_expired(self):
-        new_date = datetime.strptime('2014-04-04', '%Y-%m-%d')
+        new_date = datetime.strptime('2014-04-04', '%Y-%m-%d').date()
         lyrics = self._create(created_date=new_date)
 
         answer = self.db.testIfExpired(lyrics)

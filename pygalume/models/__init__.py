@@ -1,13 +1,5 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from .lyrics import Lyrics, db
 
-from .lyrics import Lyrics
-from .BaseModify import Base
 
-engine = create_engine('sqlite:///banco.db')
-
-Session = sessionmaker(bind=engine)
-
-Base.metadata.create_all(engine)
-
-session = Session()
+if 'lyrics' not in db.get_tables():
+    db.create_table(Lyrics)

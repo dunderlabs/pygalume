@@ -8,7 +8,7 @@ Vagalume API to search and show songs lyrics.
 
 setup(
     name='Pygalume',
-    version='0.1.4',
+    version='0.2.0',
     description='Pygalume is a simple Python CLI to get lyrics',
     long_description=long_description,
     url='https://github.com/dunderlabs/pygalume',
@@ -26,10 +26,10 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
-    keywords='pygalume cli lyrics shell',
+    keywords='pygalume cli lyrics shell vagalume music song',
     download_url='https://pypi.python.org/pypi/Pygalume',
     packages=find_packages(exclude=['tests*']),
-    install_requires=['requests>=2.7.0', 'SQLAlchemy>=1.0.8'],
+    install_requires=['requests>=2.7.0', 'peewee>=2.8.0'],
     scripts=['bin/pygalume'],
     platforms='windows linux',
 )

@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
 
-from sqlalchemy import and_
-
-from ..models import Lyrics, session as s
+from ..models import Lyrics
 from .utils import formating_string_name
 
 
@@ -11,17 +9,14 @@ class DataBase():
         This class will work as a cache.
     """
 
-    def __init__(self, session=s):
-        self.session = session
-
     def getLyrics(self, artist, music):
         artist_tag = formating_string_name(artist)
         music_tag = formating_string_name(music)
 
-        lyrics = self.session.query(Lyrics).filter(
-            and_(
-                Lyrics.music_tag == music_tag, Lyrics.artist_tag == artist_tag
-            )).first()
+        lyrics = Lyrics.select().where(
+            Lyrics.artist_tag == artist_tag,
+            Lyrics.music_tag == music_tag
+        ).first()
 
         return lyrics
 
@@ -37,8 +32,7 @@ class DataBase():
         lyrics.music_tag = formating_string_name(lyrics.music)
         lyrics.artist_tag = formating_string_name(lyrics.artist)
 
-        self.session.add(lyrics)
-        self.session.commit()
+        lyrics.save()
 
     def testIfExpired(self, lyrics):
         lyrics_date = lyrics.created_date
@@ -49,10 +43,14 @@ class DataBase():
         return date_to_expires < now
 
     def updateLyrics(self, lyrics, new_lyrics):
-        lyrics.update(new_lyrics)
 
-        self.session.commit()
+        lyrics.text = new_lyrics.text
+        lyrics.translate = new_lyrics.translate
+        lyrics.created_date = datetime.now().date()
+
+        lyrics.save()
 
     def getCachedSongs(self):
-        lyrics = self.session.query(Lyrics).all()
+        lyrics = Lyrics.select()
+
         return lyrics

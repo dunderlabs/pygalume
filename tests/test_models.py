@@ -1,6 +1,6 @@
-from models import Lyrics
+from pygalume.models import Lyrics
 
-from tests import TestBaseDb
+from . import TestBaseDb
 
 
 class TestLyricsModel(TestBaseDb):
@@ -9,16 +9,15 @@ class TestLyricsModel(TestBaseDb):
         lyrics = self._create()
 
         expected = [lyrics]
-        result = self.session.query(Lyrics).all()
+        result = Lyrics.select()
 
         self.assertEqual(result, expected)
 
     def test_update(self):
         lyrics = self._create()
 
-        another_lyrics = self._create(commit=False, text='Bar')
-
-        lyrics.update(another_lyrics)
+        lyrics.text = 'Bar'
+        lyrics.save()
 
         db_lyrics = self.db.getLyrics(artist='Testudo', music='Test')
 

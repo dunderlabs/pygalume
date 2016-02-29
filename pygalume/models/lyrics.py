@@ -1,36 +1,36 @@
 from datetime import datetime
 
-from sqlalchemy import Column, String, Date, Float, Text, UniqueConstraint
-from sqlalchemy.orm import relationship
+from peewee import *
+from playhouse.sqlite_ext import SqliteExtDatabase
 
-from .BaseModify import Base
+from ..settings import DATABASE_URL
 
 
-class Lyrics(Base):
+db = SqliteExtDatabase(DATABASE_URL)
+
+
+class Lyrics(Model):
     '''
         music_tag & artist_tag save the string like this:
         last-kiss & pearl-jam, to improve the search.
     '''
 
-    created_date = Column(Date, default=datetime.now().date())
+    created_date = DateField(default=datetime.now().date)
 
-    music = Column(String, nullable=False)
-    music_tag = Column(String, nullable=False)
-    music_url = Column(String, nullable=False)
+    music = CharField(null=False)
+    music_tag = CharField(null=False)
+    music_url = CharField(null=False)
 
-    text = Column(Text, nullable=False)
-    translate = Column(Text)
+    text = TextField(null=False)
+    translate = TextField()
 
-    artist = Column(String, nullable=False)
-    artist_tag = Column(String, nullable=False)
-    artist_url = Column(String, nullable=False)
+    artist = CharField(null=False)
+    artist_tag = CharField(null=False)
+    artist_url = CharField(null=False)
 
-    __table_args__ = (UniqueConstraint('music', 'artist'),)
-
-    def update(self, new_lyrics):
-        self.text = new_lyrics.text
-        self.translate = new_lyrics.translate
-        self.created_date = datetime.now().date()
+    class Meta:
+        database = db
+        indexes = (('music', 'artist'), True)
 
     def __repr__(self):
         return '{0} - {1}'.format(self.artist, self.music)
