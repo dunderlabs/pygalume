@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase
@@ -34,3 +34,11 @@ class Lyrics(Model):
 
     def __repr__(self):
         return '{0} - {1}'.format(self.artist, self.music)
+
+    def expired(self):
+        lyrics_date = self.created_date
+        now = datetime.now().date()
+
+        date_to_expires = lyrics_date + timedelta(days=30)
+
+        return date_to_expires < now

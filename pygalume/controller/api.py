@@ -34,13 +34,18 @@ class API():
             except KeyError:
                 translate = ''
 
+            artist_name = response['art']['name']
+            music_name = response['mus'][0]['name']
+
             data = {
-                'artist': response['art']['name'],
+                'artist': artist_name,
                 'artist_url': response['art']['url'],
-                'music': response['mus'][0]['name'],
+                'music': music_name,
                 'music_url': response['mus'][0]['url'],
                 'text': response['mus'][0]['text'],
                 'translate': translate,
+                'music_tag': formating_string_name(music_name),
+                'artist_tag': formating_string_name(artist_name)
             }
             return Lyrics(**data)
 
