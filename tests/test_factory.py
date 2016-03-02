@@ -10,7 +10,7 @@ class TestFactory(TestBaseDb):
 
     def test_get_lyrics_with_db(self):
         ''' When lyrics exists in DB'''
-        lyrics = self._create()
+        self._create()
 
         fac = Factory()
 
@@ -47,14 +47,14 @@ class TestFactory(TestBaseDb):
         fac = Factory()
 
         with self.assertRaises(ArtistNotFound):
-            db_lyrics = fac.getLyrics(artist='Pear', music='Last Kiss')
+            fac.getLyrics(artist='Pear', music='Last Kiss')
 
         with self.assertRaises(ArtistNotFound):
-            db_lyrics = fac.getLyrics(artist='Pear Jam', music='Last')
+            fac.getLyrics(artist='Pear Jam', music='Last')
 
     def test_get_cached_songs(self):
         ''' When lyrics exists in DB'''
-        lyrics = self._create()
+        self._create()
         fac = Factory()
 
         db_lyrics = fac.getCachedSongs()

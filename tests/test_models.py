@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pygalume.models import Lyrics
 
 from . import TestBaseDb
@@ -22,3 +24,18 @@ class TestLyricsModel(TestBaseDb):
         db_lyrics = self.db.getLyrics(artist='Testudo', music='Test')
 
         self.assertEqual(db_lyrics.text, 'Bar')
+
+    def test_expired(self):
+        new_date = datetime.strptime('2014-04-04', '%Y-%m-%d').date()
+        lyrics = self._create(created_date=new_date)
+
+        answer = lyrics.expired()
+
+        self.assertTrue(answer)
+
+    def test_not_expired(self):
+        lyrics = self._create()
+
+        answer = lyrics.expired()
+
+        self.assertFalse(answer)

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from ..models import Lyrics
 from .utils import formating_string_name
@@ -20,27 +20,13 @@ class DataBase():
 
         return lyrics
 
-    def testIfExist(self, artist, music):
+    def exists(self, artist, music):
         lyrics = self.getLyrics(artist, music)
 
         if lyrics:
             return True
         else:
             return False
-
-    def addLyrics(self, lyrics):
-        lyrics.music_tag = formating_string_name(lyrics.music)
-        lyrics.artist_tag = formating_string_name(lyrics.artist)
-
-        lyrics.save()
-
-    def testIfExpired(self, lyrics):
-        lyrics_date = lyrics.created_date
-        now = datetime.now().date()
-
-        date_to_expires = lyrics_date + timedelta(days=30)
-
-        return date_to_expires < now
 
     def updateLyrics(self, lyrics, new_lyrics):
 
