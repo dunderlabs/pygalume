@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from ..models import Lyrics
 from .utils import formating_string_name

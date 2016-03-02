@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from pygalume.models import Lyrics
 from . import TestBaseDb
 
@@ -32,8 +30,8 @@ class TestDataBase(TestBaseDb):
         self.assertEqual(db_lyrics.text, 'Bar')
 
     def test_cached_songs(self):
-        lyrics = self._create()
-        lyrics = self._create(artist="test2", music="music2")
+        self._create()
+        self._create(artist="test2", music="music2")
 
         db_lyrics = self.db.getCachedSongs()
 
