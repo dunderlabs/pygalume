@@ -42,24 +42,28 @@ Here you can see pygalume in action. How to get a lyric from your favorite artis
 Note: if the artist's name or music have more than one word, wrap it with double quotes.
 
 .. code-block:: bash
+
 	$ pygalume -a Sia -m "Bird set free"
 
 
 How to get the discography?
 
 .. code-block:: bash
+
 	$ pygalume -a Sia -d
 
 
 How to get songs name from an album?
 
 .. code-block:: bash
+
 	$ pygalume -a Sia --al "This Is Acting"
 
 
 How to list all songs in cache?
 
 .. code-block:: bash
+
 	$ pygalume --lc # or
 	$ pygalume --list-cache
 
@@ -67,5 +71,6 @@ How to list all songs in cache?
 How to clear all songs in cache?
 
 .. code-block:: bash
+
 	$ pygalume --cc # or
 	$ pygalume --clear-cache
