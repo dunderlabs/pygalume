@@ -41,7 +41,7 @@ Usage example
 
 Here you can see pygalume in action. How to get a lyric from your favorite artist?
 
-  Pygalyme works offline for those lyrics you had already searched for.
+  Pygalume works offline for those lyrics you had already searched for.
  
 Note: if the artist's name or music have more than one word, wrap it with double quotes.
 
