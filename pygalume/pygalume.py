@@ -1,7 +1,7 @@
 import argparse
 import os
 from .controller.factory import Factory
-from .myexceptions import MusicNotFound, ArtistNotFound
+from .myexceptions import MusicNotFound, ArtistNotFound, DiscographyNotFound
 
 
 factory = Factory()
@@ -181,9 +181,12 @@ def getDiscography(artist):
 
 
 def getSongs(artist, album):
-    data = factory.getSongs(artist, album)
-    for music in data:
-        print(music)
+    try:
+        data = factory.getSongs(artist, album)
+        for music in data:
+            print(music)
+    except DiscographyNotFound:
+        print('Discography not found!')
 
 
 if __name__ == "__main__":
