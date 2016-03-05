@@ -1,0 +1,3 @@
+- 0.2.3
+	- When a album name that did not exists is given, raise an error
+	- Order musics from the cache by artist name
