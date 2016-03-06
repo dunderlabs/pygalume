@@ -23,15 +23,17 @@ Installing
 Via pip
 
 .. code-block:: bash
-	$ pip install pygalume
+
+    $ pip install pygalume
 
 
 Clone this project and install via setup.py
 
 .. code-block:: bash
-	$ git clone git@github.com:dunderlabs/pygalume.git
-	$ cd pygalume/
-	$ python setup.py install
+
+    $ git clone git@github.com:dunderlabs/pygalume.git
+    $ cd pygalume/
+    $ python setup.py install
 
 
 Usage example
@@ -39,38 +41,50 @@ Usage example
 
 Here you can see pygalume in action. How to get a lyric from your favorite artist?
 
+  Pygalume works offline for those lyrics you had already searched for.
+ 
 Note: if the artist's name or music have more than one word, wrap it with double quotes.
 
 .. code-block:: bash
 
-	$ pygalume -a Sia -m "Bird set free"
+    $ pygalume -a Sia -m "Bird set free"
 
 
 How to get the discography?
 
 .. code-block:: bash
 
-	$ pygalume -a Sia -d
+    $ pygalume -a Sia -d
 
 
 How to get songs name from an album?
 
 .. code-block:: bash
 
-	$ pygalume -a Sia --al "This Is Acting"
+    $ pygalume -a Sia --al "This Is Acting"
 
 
 How to list all songs in cache?
 
 .. code-block:: bash
 
-	$ pygalume --lc # or
-	$ pygalume --list-cache
+    $ pygalume --lc # or
+    $ pygalume --list-cache
 
 
 How to clear all songs in cache?
 
 .. code-block:: bash
 
-	$ pygalume --cc # or
-	$ pygalume --clear-cache
+    $ pygalume --cc # or
+    $ pygalume --clear-cache
+
+
+Development
+-------------
+
+Running unit tests:
+
+.. code-block:: bash
+
+    $ python setup test

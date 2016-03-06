@@ -37,6 +37,6 @@ class DataBase():
         lyrics.save()
 
     def getCachedSongs(self):
-        lyrics = Lyrics.select()
+        lyrics = Lyrics.select().order_by(Lyrics.artist)
 
         return lyrics
