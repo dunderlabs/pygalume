@@ -159,9 +159,15 @@ def getCachedMusics():
 def getLyrics(artist, music):
     try:
         data = factory.getLyrics(artist, music)
+        print('\n-------------------------\n')
+        print('Artist: {}'.format(data.artist))
+        print('Song: {}'.format(data.music))
+        print('URL: {}'.format(data.music_url))
+        print('\n-------------------------\n')
         print(data.text)
         print('\n-------------------------\n')
         print(data.translate)
+        print('\n-------------------------\n')
 
     except MusicNotFound:
         print('Music not found!')
