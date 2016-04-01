@@ -28,14 +28,6 @@ class DataBase():
         else:
             return False
 
-    def updateLyrics(self, lyrics, new_lyrics):
-
-        lyrics.text = new_lyrics.text
-        lyrics.translate = new_lyrics.translate
-        lyrics.created_date = datetime.now().date()
-
-        lyrics.save()
-
     def getCachedSongs(self):
         lyrics = Lyrics.select().order_by(Lyrics.artist)
 

@@ -1,3 +1,5 @@
+- 0.2.5
+    - Change class responsibility. Lyrics should update itself not Database class.
 - 0.2.4
     - New template to print out lyrics information including url to vagalume's page.
 - 0.2.3
