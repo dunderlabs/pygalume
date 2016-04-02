@@ -15,6 +15,12 @@ class TestLyricsModel(TestBaseDb):
 
         self.assertEqual(result, expected)
 
+    def test_if_was_saved_with_tag_formating(self):
+        lyrics = self._create(artist='Artist Test', music='Music Test')
+
+        self.assertEqual(lyrics.artist_tag, 'artist-test')
+        self.assertEqual(lyrics.music_tag, 'music-test')
+
     def test_update(self):
         lyrics = self._create()
 

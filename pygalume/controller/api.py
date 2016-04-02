@@ -44,8 +44,6 @@ class API():
                 'music_url': response['mus'][0]['url'],
                 'text': response['mus'][0]['text'],
                 'translate': translate,
-                'music_tag': formating_string_name(music_name),
-                'artist_tag': formating_string_name(artist_name)
             }
             return Lyrics(**data)
 

@@ -4,7 +4,7 @@ from peewee import *
 from playhouse.sqlite_ext import SqliteExtDatabase
 
 from ..settings import DATABASE_URL
-
+from ..controller.utils import formating_string_name
 
 db = SqliteExtDatabase(DATABASE_URL)
 
@@ -27,6 +27,12 @@ class Lyrics(Model):
     artist = CharField(null=False)
     artist_tag = CharField(null=False)
     artist_url = CharField(null=False)
+
+    def save(self, *args, **kwargs):
+        self.music_tag = formating_string_name(self.music)
+        self.artist_tag = formating_string_name(self.artist)
+
+        return super(Lyrics, self).save(*args, **kwargs)
 
     class Meta:
         database = db
