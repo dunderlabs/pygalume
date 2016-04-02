@@ -48,3 +48,11 @@ class Lyrics(Model):
         date_to_expires = lyrics_date + timedelta(days=30)
 
         return date_to_expires < now
+
+    def updateTo(self, new_lyrics):
+
+        self.text = new_lyrics.text
+        self.translate = new_lyrics.translate
+        self.created_date = datetime.now().date()
+
+        self.save()

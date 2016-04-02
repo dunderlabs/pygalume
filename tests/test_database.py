@@ -18,17 +18,6 @@ class TestDataBase(TestBaseDb):
 
         self.assertTrue(answer)
 
-    def test_update(self):
-        lyrics = self._create()
-
-        another_lyrics = self._create(commit=False, text='Bar')
-
-        self.db.updateLyrics(lyrics, another_lyrics)
-
-        db_lyrics = self.db.getLyrics(artist='Testudo', music='Test')
-
-        self.assertEqual(db_lyrics.text, 'Bar')
-
     def test_cached_songs(self):
         self._create()
         self._create(artist="test2", music="music2")

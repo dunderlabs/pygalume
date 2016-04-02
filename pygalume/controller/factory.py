@@ -16,7 +16,7 @@ class Factory():
 
                 if lyrics.expired():
                     new_lyrics = self._api.getLyrics(artist, music)
-                    self._db.updateLyrics(lyrics, new_lyrics)
+                    lyrics.updateTo(new_lyrics)
 
             else:
                 lyrics = self._api.getLyrics(artist, music)
