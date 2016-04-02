@@ -18,8 +18,9 @@ class TestLyricsModel(TestBaseDb):
     def test_update(self):
         lyrics = self._create()
 
-        lyrics.text = 'Bar'
-        lyrics.save()
+        another_lyrics = self._create(commit=False, text='Bar')
+
+        lyrics.updateTo(another_lyrics)
 
         db_lyrics = self.db.getLyrics(artist='Testudo', music='Test')
 
