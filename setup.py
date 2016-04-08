@@ -27,7 +27,7 @@ setup(
         'Programming Language :: Python :: 3.5',
     ],
     keywords='pygalume cli lyrics shell vagalume music song',
-    download_url='https://pypi.python.org/pypi/Pygalume',
+    download_url='https://github.com/dunderlabs/pygalume/archive/master.zip',
     packages=find_packages(exclude=['tests*']),
     install_requires=['requests>=2.7.0', 'peewee>=2.8.0'],
     scripts=['bin/pygalume'],
