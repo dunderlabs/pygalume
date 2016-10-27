@@ -87,4 +87,4 @@ Running unit tests:
 
 .. code-block:: bash
 
-    $ python setup test
+    $ python setup.py test
