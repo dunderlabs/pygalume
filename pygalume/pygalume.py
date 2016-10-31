@@ -21,11 +21,15 @@ def main():
                              [-d/--discography]
                              [--lc/--list-cache]
                              [--cc/--clear-cache]
+                             [-p/--pretty]
   \n              Get basic options and Help, use: -h\--help
 
           Examples:
             - Get Lyrics:
                  pygalume.py -a "Pearl Jam" -m Black
+
+            - Get Lyrics (Versions side by side):
+                 pygalume.py -a "Pearl Jam" -m Black -p
 
             - Get Discography:
                  pygalume.py -a "Pearl Jam" -d
@@ -49,6 +53,13 @@ def main():
         dest="music",
         type=str,
         help="Set music name",
+    )
+
+    parser.add_argument(
+        "-p",
+        "--pretty",
+        action="store_true",
+        help="Display song versions side by side",
     )
 
     parser.add_argument(
@@ -96,6 +107,7 @@ def main():
     listCache = options.listCache
     cache = options.cache
     update = options.update
+    pretty = options.pretty
 
     if update:
         print("This is not working yet!")
@@ -110,7 +122,7 @@ def main():
         return
 
     if artist and music:
-        getLyrics(artist, music)
+        getLyrics(artist, music, pretty)
         return
 
     if artist and discography:
@@ -138,6 +150,8 @@ Options:
   --cc, --clear-cache       clear cache from database
 
   --update                  upgrade to latest version
+
+  -p, --pretty              display song versions side by side
             """)
 
 
@@ -156,18 +170,14 @@ def getCachedMusics():
     print('\n\n')
 
 
-def getLyrics(artist, music):
+def getLyrics(artist, music, pretty):
     try:
         data = factory.getLyrics(artist, music)
-        print('\n-------------------------\n')
-        print('Artist: {}'.format(data.artist))
-        print('Song: {}'.format(data.music))
-        print('URL: {}'.format(data.music_url))
-        print('\n-------------------------\n')
-        print(data.text)
-        print('\n-------------------------\n')
-        print(data.translate)
-        print('\n-------------------------\n')
+
+        if pretty and data.translate:
+            print_pretty_lyrics(data)
+        else:
+            print_lyrics(data)
 
     except MusicNotFound:
         print('Music not found!')
@@ -193,6 +203,61 @@ def getSongs(artist, album):
             print(music)
     except DiscographyNotFound:
         print('Discography not found!')
+
+
+def print_lyrics(data):
+    print('\n-------------------------\n')
+    print('Artist: {}'.format(data.artist))
+    print('Song: {}'.format(data.music))
+    print('URL: {}'.format(data.music_url))
+    print('\n-------------------------\n')
+    print(data.text)
+    print('\n-------------------------\n')
+
+    if data.translate:
+        print(data.translate)
+        print('\n-------------------------\n')
+
+
+def print_pretty_lyrics(data):
+    original_song = [x.strip() for x in data.text.split('\n')]
+    translated_song = [x.strip() for x in data.translate.split('\n')]
+
+    original_title = '[{0}]'.format(data.music)
+    translated_title = translated_song[0]
+
+    translated_song.pop(0)
+    #remove empty lines up to first song verse
+    while(translated_song and translated_song[0].strip() == ''):
+        translated_song.pop(0)
+
+    max_length = max([len(x) for x in original_song])
+
+    text = prettify_title(data, original_title, translated_title, max_length)
+    for i in range(len(original_song)):
+        text += prettify_line(original_song[i], translated_song[i], max_length)
+
+    text += '\n-------------------------\n'
+    print(text)
+
+
+def prettify_title(data, original, translated, max_length):
+    text = '\n-------------------------\n\n'
+    text+= 'Artist: {}'.format(data.artist)
+    text+= '\n'
+    text+= 'URL: {}'.format(data.music_url)
+    text+= '\n\n-------------------------\n\n'
+    text+= prettify_line(original, translated, max_length)
+    text+= prettify_line('', '', max_length)
+    return text
+
+
+def prettify_line(original, translated, max_length):
+    text = original + ' ' * (max_length - len(original))
+    text+= '{0}|{0}'.format(' ' * 10)
+    text+= translated
+    text+= '\n'
+    return text
 
 
 if __name__ == "__main__":
