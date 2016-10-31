@@ -91,13 +91,6 @@ def main():
         help="Clear the database cache",
     )
 
-    parser.add_argument(
-        "--update",
-        action="store_true",
-        dest="update",
-        help="upgrade to latest version",
-    )
-
     options = parser.parse_args()
 
     artist = options.artist
@@ -106,12 +99,7 @@ def main():
     discography = options.discography
     listCache = options.listCache
     cache = options.cache
-    update = options.update
     pretty = options.pretty
-
-    if update:
-        print("This is not working yet!")
-        return
 
     if cache:
         clearCache()
@@ -148,8 +136,6 @@ Options:
 
   --lc, --list-cache        list all songs in cache
   --cc, --clear-cache       clear cache from database
-
-  --update                  upgrade to latest version
 
   -p, --pretty              display song versions side by side
             """)
@@ -241,20 +227,20 @@ def print_pretty_lyrics(data):
 
 def prettify_title(data, original, translated, max_length):
     text = '\n-------------------------\n\n'
-    text+= 'Artist: {}'.format(data.artist)
-    text+= '\n'
-    text+= 'URL: {}'.format(data.music_url)
-    text+= '\n\n-------------------------\n\n'
-    text+= prettify_line(original, translated, max_length)
-    text+= prettify_line('', '', max_length)
+    text += 'Artist: {}'.format(data.artist)
+    text += '\n'
+    text += 'URL: {}'.format(data.music_url)
+    text += '\n\n-------------------------\n\n'
+    text += prettify_line(original, translated, max_length)
+    text += prettify_line('', '', max_length)
     return text
 
 
 def prettify_line(original, translated, max_length):
     text = original + ' ' * (max_length - len(original))
-    text+= '{0}|{0}'.format(' ' * 10)
-    text+= translated
-    text+= '\n'
+    text += '{0}|{0}'.format(' ' * 10)
+    text += translated
+    text += '\n'
     return text
 
 

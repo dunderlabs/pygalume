@@ -10,7 +10,7 @@ pygalume
 
 A simple python command line utility using the Vagalume API to search and show songs lyrics.
 
-.. image:: http://i.imgur.com/q4S2vw8.jpg
+.. image:: http://i.imgur.com/MpmZu1j.png
    :height: 524px
    :width: 582px
    :alt: Usage
@@ -48,6 +48,13 @@ Note: if the artist's name or music have more than one word, wrap it with double
 .. code-block:: bash
 
     $ pygalume -a Sia -m "Bird set free"
+
+
+How to print lyrics side by side?
+
+.. code-block:: bash
+
+    $ pygalume -a Sia -m "Bird set free" -p
 
 
 How to get the discography?
