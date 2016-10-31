@@ -224,10 +224,8 @@ def print_pretty_lyrics(data):
     translated_song = [x.strip() for x in data.translate.split('\n')]
 
     original_title = '[{0}]'.format(data.music)
-    translated_title = translated_song[0]
+    translated_title = translated_song.pop(0)
 
-    translated_song.pop(0)
-    #remove empty lines up to first song verse
     while(translated_song and translated_song[0].strip() == ''):
         translated_song.pop(0)
 
